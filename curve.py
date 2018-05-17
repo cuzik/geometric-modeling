@@ -30,7 +30,7 @@ class Curve(object):
       pygame.draw.lines(self.screen, self.color_points, False , [self.control_points[i], self.control_points[i+1]], 1)
 
   def draw_curve(self):
-    pygame.draw.lines(self.screen, self.color_curve, False, self.curve_points, 2)
+    pygame.draw.lines(self.screen, self.color_curve, False, self.curve_points, 3)
 
   def draw_all_struct(self):
     self.draw_points()
@@ -50,9 +50,10 @@ class Curve(object):
 
   def define_control_points(self):
     while not self.define_points_done:
-      pygame.display.flip()
       self.get_events()
       self.draw_points()
+      self.draw_edge()
+      pygame.display.flip()
 
   def move(self, reference_point):
     diference_point = (self.control_points[0][0] - reference_point[0], self.control_points[0][1] - reference_point[1])
@@ -62,3 +63,16 @@ class Curve(object):
 
   def last_control_point(self):
     return self.control_points[-1]
+
+  def get_coefficient(self):
+    if self.control_points[1][0] - self.control_points[0][0] == 0:
+      return 1
+    return (self.control_points[1][1] - self.control_points[0][1]) / float  (self.control_points[1][0] - self.control_points[0][0])
+
+  def change_penultimate_control_point(self, coefficient):
+    self.control_points[-2] = (self.control_points[-2][0], int(self.control_points[-1][1] + (self.control_points[-2][0] - self.control_points[-1][0]) * coefficient))
+    self.define_curve_ponits()
+
+  def aa(self):
+    self.control_points[-2] = (self.control_points[-1][0] * 2 - self.control_points[-2][0], self.control_points[-1][1] * 2 - self.control_points[-2][1])
+    self.define_curve_ponits()
