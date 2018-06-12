@@ -2,7 +2,7 @@ import os
 import numpy as np
 import scipy.special
 import pygame
-from pygame.locals import *
+from pygame.locals import QUIT, KEYDOWN, K_ESCAPE, K_SPACE
 
 class Curve(object):
   """docstring for Curve"""
@@ -30,7 +30,9 @@ class Curve(object):
       pygame.draw.lines(self.screen, self.color_points, False , [self.control_points[i], self.control_points[i+1]], 1)
 
   def draw_curve(self):
-    pygame.draw.lines(self.screen, self.color_curve, False, self.curve_points, 3)
+    # pygame.draw.lines(self.screen, self.color_curve, False, self.curve_points, 3)
+    for point in self.curve_points:
+      pygame.draw.circle(self.screen, self.color_curve, (int(point[0]),int(point[1])), 1)
 
   def draw_all_struct(self):
     self.draw_points()

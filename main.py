@@ -2,7 +2,7 @@ import os
 import numpy as np
 import scipy.special
 import pygame
-from pygame.locals import *
+from pygame.locals import QUIT, KEYDOWN, K_ESCAPE, K_0, K_1, K_a, K_c
 
 from curve import Curve
 from bezier import Bezier

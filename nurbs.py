@@ -1,7 +1,6 @@
 import numpy as np
 import scipy.special
 from curve import Curve
-from pygame.locals import *
 
 class Nurbs(Curve):
   """docstring for Nerbs"""
