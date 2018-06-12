@@ -1,9 +1,11 @@
 # [WIP] Geometric Modeling
 
 ## Requiries
+
 First install some libs "(>_<)"
 
 ### Ubuntu/Linux
+
 - install pygame
 
   `sudo apt install python-pygame`
@@ -18,6 +20,7 @@ First install some libs "(>_<)"
   `pip install numpy`
 
 ## RUN
+
 To run the program you only have to white
 
   `python main.py`
