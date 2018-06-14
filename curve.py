@@ -95,10 +95,3 @@ class Curve(object):
             ),
         )
         self.define_curve_ponits()
-
-    def aa(self):
-        self.control_points[-2] = (
-            self.control_points[-1][0] * 2 - self.control_points[-2][0],
-            self.control_points[-1][1] * 2 - self.control_points[-2][1],
-        )
-        self.define_curve_ponits()
