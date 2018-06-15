@@ -13,6 +13,7 @@ class Curve(object):
         self.color_points = color_points
         self.color_curve = color_curve
         self.screen = screen
+        self.step = 0.01
         self.define_points_done = False
         self.curve_points = []
         self.control_points = []
@@ -38,7 +39,10 @@ class Curve(object):
             )
 
     def draw_curve(self):
-        pygame.draw.lines(self.screen, self.color_curve, False, self.curve_points, 3)
+        # pygame.draw.lines(self.screen, self.color_curve, False, self.curve_points, 3)
+        for curve_point in self.curve_points:
+            pygame.draw.circle(self.screen, self.color_curve, curve_point, 2)
+
 
     def draw_all_struct(self):
         self.draw_points()
@@ -78,20 +82,8 @@ class Curve(object):
     def last_control_point(self):
         return self.control_points[-1]
 
-    def get_coefficient(self):
-        if self.control_points[1][0] - self.control_points[0][0] == 0:
-            return 1
-        return (self.control_points[1][1] - self.control_points[0][1]) / float(
-            self.control_points[1][0] - self.control_points[0][0]
-        )
+    def calculate_function_par_last_points(self):
+        print(self.curve_points[-10:])
 
-    def change_penultimate_control_point(self, coefficient):
-        self.control_points[-2] = (
-            self.control_points[-2][0],
-            int(
-                self.control_points[-1][1]
-                + (self.control_points[-2][0] - self.control_points[-1][0])
-                * coefficient
-            ),
-        )
-        self.define_curve_ponits()
+    def calculate_function_par_first_points(self):
+        print(self.curve_points[:10])

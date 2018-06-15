@@ -1,26 +1,46 @@
 # [WIP] Geometric Modeling
 
 ## Requiries
+
 First install some libs "(>_<)"
 
 ### Ubuntu/Linux
+
 - install pygame
 
-  `sudo apt install python-pygame`
+```sh
+sudo apt install python-pygame
+```
+
 - install pip
 
-  `sudo apt install python-pip`
+```sh
+sudo apt install python-pip
+```
+
 - install scipy
 
-  `pip install scipy`
+```sh
+pip install scipy
+```
+
 - install numpy
 
-  `pip install numpy`
+```sh
+pip install numpy
+```
+
+- isntall tkinter
+
+```sh
+sudo apt install python-tk
+```
 
 ## RUN
+
 To run the program you only have to white
 
-  `python main.py`
+`python main.py`
 
 Click on some places to define the control points of the first and press the space key
 

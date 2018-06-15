@@ -2,9 +2,8 @@ import os
 import numpy as np
 import scipy.special
 import pygame
-from pygame.locals import QUIT, KEYDOWN, K_ESCAPE, K_0, K_1, K_c
+from pygame.locals import QUIT, KEYDOWN, K_ESCAPE, K_0, K_1, K_2, K_c
 
-from curve import Curve
 from bezier import Bezier
 from nurbs import Nurbs
 
@@ -32,7 +31,11 @@ def get_events_draw():
         elif event.type == KEYDOWN and event.key == K_0:
             nurbs_curve.move(bezier_curve.last_control_point())
         elif event.type == KEYDOWN and event.key == K_1:
-            bezier_curve.change_penultimate_control_point(nurbs_curve.get_coefficient())
+            print('WIP C1')
+            bezier_curve.calculate_function_par_last_points()
+            nurbs_curve.calculate_function_par_first_points()
+        elif event.type == KEYDOWN and event.key == K_2:
+            print('WIP C2')
         elif event.type == KEYDOWN and event.key == K_c:
             only_curve = only_curve == False
 

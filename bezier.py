@@ -9,7 +9,7 @@ class Bezier(Curve):
     def define_curve_ponits(self):
         self.curve_points = []
         n = len(self.control_points) - 1
-        for t in np.arange(0, 1.0, 0.001):
+        for t in np.arange(0, 1.0 + self.step, self.step):
             b_point_x = 0
             b_point_y = 0
             for i in range(0, len(self.control_points)):
@@ -26,4 +26,4 @@ class Bezier(Curve):
                     * self.control_points[i][1]
                     * binomial_coefficient
                 )
-            self.curve_points += [(b_point_x, b_point_y)]
+            self.curve_points += [(int(b_point_x), int(b_point_y))]
