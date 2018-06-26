@@ -19,7 +19,7 @@ game_run = True
 only_curve = False
 
 bezier_curve = Bezier([150, 0, 0], [200, 200, 0], screen, 4)
-nurbs_curve = Nurbs([0, 150, 0], [0, 200, 200], screen, 5)
+nurbs_curve = Nurbs([0, 150, 0], [0, 200, 200], screen, 5, [2, 2, 2, 2, 2])
 
 
 def get_events_draw():
@@ -55,7 +55,7 @@ def define_c1():
         abs(bezier_curve.first_derivate()[0] - nurbs_curve.first_derivate()[0]) < 5
         and abs(bezier_curve.first_derivate()[1] - nurbs_curve.first_derivate()[1]) < 5
     ):
-        print(bezier_curve.first_derivate(), nurbs_curve.first_derivate(), increment)
+        # print(bezier_curve.first_derivate(), nurbs_curve.first_derivate(), increment)
         bezier_curve.draw_curve()
         nurbs_curve.draw_curve()
         bezier_curve.change_penultimate_control_point(
@@ -74,20 +74,10 @@ def define_c1():
 
 def define_c2():
     increment = 1
-
     alterator = 0
 
-    y = bezier_curve.control_points[-3][1]
-
-    print(
-        bezier_curve.second_derivate()[0] - nurbs_curve.second_derivate()[0],
-        bezier_curve.second_derivate()[1] - nurbs_curve.second_derivate()[1],
-    )
-
     while not (
-        abs(bezier_curve.second_derivate()[0] - nurbs_curve.second_derivate()[0]) < 5
-        and abs(bezier_curve.second_derivate()[1] - nurbs_curve.second_derivate()[1])
-        < 5
+        abs(bezier_curve.second_derivate()[0] - nurbs_curve.second_derivate()[0]) < 50
     ):
         print(
             bezier_curve.second_derivate()[0] - nurbs_curve.second_derivate()[0],
@@ -95,8 +85,8 @@ def define_c2():
         )
 
         bezier_curve.control_points[-3] = (
-            random.randint(0, 2000),
-            random.randint(0, 2000),
+            random.randint(0, 1500),
+            bezier_curve.control_points[-3][1],
         )
         bezier_curve.define_curve_ponits()
 
@@ -104,11 +94,41 @@ def define_c2():
 
         if (
             abs(bezier_curve.control_points[-3][0]) > 1500
-            or abs(bezier_curve.control_points[-3][1]) > 1500
         ):
             increment = -increment
         alterator = alterator + increment
 
+    increment = 1
+    alterator = 0
+
+    while not (
+        abs(bezier_curve.second_derivate()[1] - nurbs_curve.second_derivate()[1]) < 50
+    ):
+        print(
+            bezier_curve.second_derivate()[0] -
+            nurbs_curve.second_derivate()[0],
+            bezier_curve.second_derivate()[1] -
+            nurbs_curve.second_derivate()[1],
+        )
+
+        bezier_curve.control_points[-3] = (
+            bezier_curve.control_points[-3][0],
+            random.randint(0, 1500),
+        )
+        bezier_curve.define_curve_ponits()
+
+        draw_full_screen()
+
+        if (
+            abs(bezier_curve.control_points[-3][1]) > 1500
+        ):
+            increment = -increment
+        alterator = alterator + increment
+
+    print(
+        bezier_curve.second_derivate()[0] - nurbs_curve.second_derivate()[0],
+        bezier_curve.second_derivate()[1] - nurbs_curve.second_derivate()[1],
+    )
 
 def draw_full_screen():
     screen.fill((22, 22, 22))

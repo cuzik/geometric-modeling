@@ -8,12 +8,13 @@ from pygame.locals import QUIT, KEYDOWN, K_ESCAPE, K_SPACE
 class Curve(object):
     """docstring for Curve"""
 
-    def __init__(self, color_points, color_curve, screen, number_points):
+    def __init__(self, color_points, color_curve, screen, number_points, weigth=[1, 1, 1, 1, 1]):
         super(Curve, self).__init__()
         self.color_points = color_points
         self.color_curve = color_curve
         self.screen = screen
         self.step = 0.01
+        self.weigth = weigth
         self.define_points_done = False
         self.number_points = number_points
         self.curve_points = []
@@ -62,19 +63,20 @@ class Curve(object):
             elif event.type == KEYDOWN and event.key == K_SPACE:
                 self.define_points_done = True
 
-    def define_control_points_dinamic(self):
-        while not self.define_points_done:
-            self.get_events()
-            self.draw_points()
-            self.draw_edge()
-            pygame.display.flip()
-
     def define_control_points(self):
         while not self.define_points_done:
             self.get_events()
             self.draw_points()
             self.draw_edge()
             pygame.display.flip()
+
+        data = []
+        for i in range(0, len(self.control_points)):
+            for j in range(0, self.weigth[i]):
+                data += [self.control_points[i]]
+
+        self.old = self.control_points
+        self.control_points = data
 
     def move(self, reference_point):
         diference_point = (
@@ -92,11 +94,18 @@ class Curve(object):
         return self.control_points[-1]
 
     def get_coefficient(self):
-        if self.control_points[1][0] - self.control_points[0][0] == 0:
+        p1 = self.control_points[0]
+        p2 = self.control_points[1]
+
+        index = 2
+
+        while p2 == p1:
+            p2 = self.control_points[index]
+            index += 1
+
+        if p2[0] - p1[0] == 0:
             return 1
-        return (self.control_points[1][1] - self.control_points[0][1]) / float(
-            self.control_points[1][0] - self.control_points[0][0]
-        )
+        return (p2[1] - p1[1]) / float(p2[0] - p1[0])
 
     def change_penultimate_control_point(self, coefficient, alterator, x):
         self.control_points[-2] = (

@@ -31,20 +31,20 @@ class Nurbs(Curve):
     def first_derivate(self):
         return (
             (
-                -3 * self.control_points[0][0] * (1 - 0) ** 2
-                + 3 * self.control_points[1][0] * (1 - 0) ** 2
-                - 6 * self.control_points[1][0] * (1 - 0) * 0
-                + 6 * self.control_points[2][0] * (1 - 0) * 0
-                - 3 * self.control_points[2][0] * 0 ** 2
-                + 3 * self.control_points[3][0] * 0 ** 2
+                -3 * self.old[0][0] * (1 - 0) ** 2
+                + 3 * self.old[1][0] * (1 - 0) ** 2
+                - 6 * self.old[1][0] * (1 - 0) * 0
+                + 6 * self.old[2][0] * (1 - 0) * 0
+                - 3 * self.old[2][0] * 0 ** 2
+                + 3 * self.old[3][0] * 0 ** 2
             ),
             (
-                -3 * self.control_points[0][1] * (1 - 0) ** 2
-                + 3 * self.control_points[1][1] * (1 - 0) ** 2
-                - 6 * self.control_points[1][1] * (1 - 0) * 0
-                + 6 * self.control_points[2][1] * (1 - 0) * 0
-                - 3 * self.control_points[2][1] * 0 ** 2
-                + 3 * self.control_points[3][1] * 0 ** 2
+                -3 * self.old[0][1] * (1 - 0) ** 2
+                + 3 * self.old[1][1] * (1 - 0) ** 2
+                - 6 * self.old[1][1] * (1 - 0) * 0
+                + 6 * self.old[2][1] * (1 - 0) * 0
+                - 3 * self.old[2][1] * 0 ** 2
+                + 3 * self.old[3][1] * 0 ** 2
             ),
         )
 
@@ -53,21 +53,21 @@ class Nurbs(Curve):
             (
                 -6
                 * (
-                    -self.control_points[2][0]
-                    + self.control_points[1][0] * (2 - 3 * 0)
-                    - self.control_points[0][0] * (1 - 0)
-                    + 3 * self.control_points[2][0] * 0
-                    - self.control_points[3][0] * 0
+                    -self.old[2][0]
+                    + self.old[1][0] * (2 - 3 * 0)
+                    - self.old[0][0] * (1 - 0)
+                    + 3 * self.old[2][0] * 0
+                    - self.old[3][0] * 0
                 )
             ),
             (
                 -6
                 * (
-                    -self.control_points[2][1]
-                    + self.control_points[1][1] * (2 - 3 * 0)
-                    - self.control_points[0][1] * (1 - 0)
-                    + 3 * self.control_points[2][1] * 0
-                    - self.control_points[3][1] * 0
+                    -self.old[2][1]
+                    + self.old[1][1] * (2 - 3 * 0)
+                    - self.old[0][1] * (1 - 0)
+                    + 3 * self.old[2][1] * 0
+                    - self.old[3][1] * 0
                 )
             ),
         )
