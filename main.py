@@ -17,9 +17,10 @@ screen.fill((22, 22, 22))
 
 game_run = True
 only_curve = False
+erro = 1
 
 bezier_curve = Bezier([150, 0, 0], [200, 200, 0], screen, 4)
-nurbs_curve = Nurbs([0, 150, 0], [0, 200, 200], screen, 5, [2, 2, 2, 2, 2])
+nurbs_curve = Nurbs([0, 150, 0], [0, 200, 200], screen, 5, [2, 3, 4, 3, 2])
 
 
 def get_events_draw():
@@ -48,7 +49,7 @@ def define_c1():
     increment = 1
 
     while not (
-        abs(bezier_curve.first_derivate()[0] - nurbs_curve.first_derivate()[0]) < 5
+        abs(bezier_curve.first_derivate()[0] - nurbs_curve.first_derivate()[0]) < erro
     ):
         # print(bezier_curve.first_derivate(), nurbs_curve.first_derivate(), increment)
 
@@ -59,15 +60,13 @@ def define_c1():
 
         draw_full_screen()
 
-        if (abs(bezier_curve.control_points[-2][0]) > 1500):
-            while True:
-                pass
+        if (abs(bezier_curve.control_points[-2][0]) > 1000):
             increment = -increment
 
     increment = 1
 
     while not (
-        abs(bezier_curve.first_derivate()[1] - nurbs_curve.first_derivate()[1]) < 5
+        abs(bezier_curve.first_derivate()[1] - nurbs_curve.first_derivate()[1]) < erro
     ):
         # print(bezier_curve.first_derivate(), nurbs_curve.first_derivate(), increment)
 
@@ -78,7 +77,7 @@ def define_c1():
 
         draw_full_screen()
 
-        if (abs(bezier_curve.control_points[-2][1]) > 1500):
+        if (abs(bezier_curve.control_points[-2][1]) > 1000):
             increment = -increment
 
 
@@ -86,7 +85,7 @@ def define_c2():
     increment = 1
 
     while not (
-        abs(bezier_curve.second_derivate()[0] - nurbs_curve.second_derivate()[0]) < 50
+        abs(bezier_curve.second_derivate()[0] - nurbs_curve.second_derivate()[0]) < erro
     ):
         # print(
         #     bezier_curve.second_derivate()[0] - nurbs_curve.second_derivate()[0],
@@ -102,14 +101,14 @@ def define_c2():
         draw_full_screen()
 
         if (
-            abs(bezier_curve.control_points[-3][0]) > 1500
+            abs(bezier_curve.control_points[-3][0]) > 1000
         ):
             increment = -increment
 
     increment = 1
 
     while not (
-        abs(bezier_curve.second_derivate()[1] - nurbs_curve.second_derivate()[1]) < 50
+        abs(bezier_curve.second_derivate()[1] - nurbs_curve.second_derivate()[1]) < erro
     ):
         # print(
         #     bezier_curve.second_derivate()[0] -
@@ -127,7 +126,7 @@ def define_c2():
         draw_full_screen()
 
         if (
-            abs(bezier_curve.control_points[-3][1]) > 1500
+            abs(bezier_curve.control_points[-3][1]) > 1000
         ):
             increment = -increment
 

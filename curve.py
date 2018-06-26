@@ -13,7 +13,7 @@ class Curve(object):
         self.color_points = color_points
         self.color_curve = color_curve
         self.screen = screen
-        self.step = 0.01
+        self.step = 0.001
         self.weigth = weigth
         self.define_points_done = False
         self.number_points = number_points
@@ -41,9 +41,9 @@ class Curve(object):
             )
 
     def draw_curve(self):
-        # pygame.draw.lines(self.screen, self.color_curve, False, self.curve_points, 3)
-        for curve_point in self.curve_points:
-            pygame.draw.circle(self.screen, self.color_curve, curve_point, 2)
+        pygame.draw.lines(self.screen, self.color_curve, False, self.curve_points, 1)
+        # for curve_point in self.curve_points:
+            # pygame.draw.circle(self.screen, self.color_curve, curve_point, 1)
 
     def draw_all_struct(self):
         self.draw_points()
