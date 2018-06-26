@@ -8,13 +8,14 @@ from pygame.locals import QUIT, KEYDOWN, K_ESCAPE, K_SPACE
 class Curve(object):
     """docstring for Curve"""
 
-    def __init__(self, color_points, color_curve, screen):
+    def __init__(self, color_points, color_curve, screen, number_points):
         super(Curve, self).__init__()
         self.color_points = color_points
         self.color_curve = color_curve
         self.screen = screen
         self.step = 0.01
         self.define_points_done = False
+        self.number_points = number_points
         self.curve_points = []
         self.control_points = []
         self.define_control_points()
@@ -43,7 +44,6 @@ class Curve(object):
         for curve_point in self.curve_points:
             pygame.draw.circle(self.screen, self.color_curve, curve_point, 2)
 
-
     def draw_all_struct(self):
         self.draw_points()
         self.draw_edge()
@@ -57,8 +57,17 @@ class Curve(object):
                 quit()
             elif event.type == pygame.MOUSEBUTTONUP:
                 self.control_points += [pygame.mouse.get_pos()]
+                if len(self.control_points) == self.number_points:
+                    self.define_points_done = True
             elif event.type == KEYDOWN and event.key == K_SPACE:
                 self.define_points_done = True
+
+    def define_control_points_dinamic(self):
+        while not self.define_points_done:
+            self.get_events()
+            self.draw_points()
+            self.draw_edge()
+            pygame.display.flip()
 
     def define_control_points(self):
         while not self.define_points_done:
@@ -81,6 +90,23 @@ class Curve(object):
 
     def last_control_point(self):
         return self.control_points[-1]
+
+    def get_coefficient(self):
+        if self.control_points[1][0] - self.control_points[0][0] == 0:
+            return 1
+        return (self.control_points[1][1] - self.control_points[0][1]) / float(
+            self.control_points[1][0] - self.control_points[0][0]
+        )
+
+    def change_penultimate_control_point(self, coefficient, alterator, x):
+        self.control_points[-2] = (
+            x + alterator,
+            int(
+                self.control_points[-1][1]
+                + (x + alterator - self.control_points[-1][0]) * coefficient
+            ),
+        )
+        self.define_curve_ponits()
 
     def calculate_function_par_last_points(self):
         print(self.curve_points[-10:])

@@ -27,3 +27,47 @@ class Bezier(Curve):
                     * binomial_coefficient
                 )
             self.curve_points += [(int(b_point_x), int(b_point_y))]
+
+    def first_derivate(self):
+        return (
+            (
+                -3 * self.control_points[0][0] * (1 - 1) ** 2
+                + 3 * self.control_points[1][0] * (1 - 1) ** 2
+                - 6 * self.control_points[1][0] * (1 - 1) * 1
+                + 6 * self.control_points[2][0] * (1 - 1) * 1
+                - 3 * self.control_points[2][0] * 1 ** 2
+                + 3 * self.control_points[3][0] * 1 ** 2
+            ),
+            (
+                -3 * self.control_points[0][1] * (1 - 1) ** 2
+                + 3 * self.control_points[1][1] * (1 - 1) ** 2
+                - 6 * self.control_points[1][1] * (1 - 1) * 1
+                + 6 * self.control_points[2][1] * (1 - 1) * 1
+                - 3 * self.control_points[2][1] * 1 ** 2
+                + 3 * self.control_points[3][1] * 1 ** 2
+            ),
+        )
+
+    def second_derivate(self):
+        return (
+            (
+                -6
+                * (
+                    -self.control_points[2][0]
+                    + self.control_points[1][0] * (2 - 3 * 1)
+                    - self.control_points[0][0] * (1 - 1)
+                    + 3 * self.control_points[2][0] * 1
+                    - self.control_points[3][0] * 1
+                )
+            ),
+            (
+                -6
+                * (
+                    -self.control_points[2][1]
+                    + self.control_points[1][1] * (2 - 3 * 1)
+                    - self.control_points[0][1] * (1 - 1)
+                    + 3 * self.control_points[2][1] * 1
+                    - self.control_points[3][1] * 1
+                )
+            ),
+        )
