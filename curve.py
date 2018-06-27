@@ -8,7 +8,9 @@ from pygame.locals import QUIT, KEYDOWN, K_ESCAPE, K_SPACE
 class Curve(object):
     """docstring for Curve"""
 
-    def __init__(self, color_points, color_curve, screen, number_points, weigth=[1, 1, 1, 1, 1]):
+    def __init__(
+        self, color_points, color_curve, screen, number_points, weigth=[1, 1, 1, 1, 1]
+    ):
         super(Curve, self).__init__()
         self.color_points = color_points
         self.color_curve = color_curve
@@ -43,7 +45,7 @@ class Curve(object):
     def draw_curve(self):
         pygame.draw.lines(self.screen, self.color_curve, False, self.curve_points, 1)
         # for curve_point in self.curve_points:
-            # pygame.draw.circle(self.screen, self.color_curve, curve_point, 1)
+        # pygame.draw.circle(self.screen, self.color_curve, curve_point, 1)
 
     def draw_all_struct(self):
         self.draw_points()

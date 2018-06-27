@@ -20,7 +20,7 @@ only_curve = False
 erro = 1
 
 bezier_curve = Bezier([150, 0, 0], [200, 200, 0], screen, 4)
-nurbs_curve = Nurbs([0, 150, 0], [0, 200, 200], screen, 5, [2, 3, 4, 3, 2])
+nurbs_curve = Nurbs([0, 150, 0], [0, 200, 200], screen, 5, [5, 5, 5, 5, 5])
 
 
 def get_events_draw():
@@ -46,7 +46,7 @@ def get_events_draw():
 
 
 def define_c1():
-    increment = 1
+    increment = -1
 
     while not (
         abs(bezier_curve.first_derivate()[0] - nurbs_curve.first_derivate()[0]) < erro
@@ -60,10 +60,10 @@ def define_c1():
 
         draw_full_screen()
 
-        if (abs(bezier_curve.control_points[-2][0]) > 1000):
+        if abs(bezier_curve.control_points[-2][0]) > 1500:
             increment = -increment
 
-    increment = 1
+    increment = -1
 
     while not (
         abs(bezier_curve.first_derivate()[1] - nurbs_curve.first_derivate()[1]) < erro
@@ -77,12 +77,12 @@ def define_c1():
 
         draw_full_screen()
 
-        if (abs(bezier_curve.control_points[-2][1]) > 1000):
+        if abs(bezier_curve.control_points[-2][1]) > 1500:
             increment = -increment
 
 
 def define_c2():
-    increment = 1
+    increment = -1
 
     while not (
         abs(bezier_curve.second_derivate()[0] - nurbs_curve.second_derivate()[0]) < erro
@@ -100,12 +100,10 @@ def define_c2():
 
         draw_full_screen()
 
-        if (
-            abs(bezier_curve.control_points[-3][0]) > 1000
-        ):
+        if abs(bezier_curve.control_points[-3][0]) > 1500:
             increment = -increment
 
-    increment = 1
+    increment = -1
 
     while not (
         abs(bezier_curve.second_derivate()[1] - nurbs_curve.second_derivate()[1]) < erro
@@ -125,15 +123,14 @@ def define_c2():
 
         draw_full_screen()
 
-        if (
-            abs(bezier_curve.control_points[-3][1]) > 1000
-        ):
+        if abs(bezier_curve.control_points[-3][1]) > 1500:
             increment = -increment
 
     print(
         bezier_curve.second_derivate()[0] - nurbs_curve.second_derivate()[0],
         bezier_curve.second_derivate()[1] - nurbs_curve.second_derivate()[1],
     )
+
 
 def draw_full_screen():
     bezier_curve.define_curve_ponits()
