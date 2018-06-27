@@ -2,7 +2,6 @@ import numpy as np
 import scipy.special
 from curve import Curve
 
-
 class Bezier(Curve):
     """docstring for Bezier"""
 
