@@ -33,15 +33,46 @@ class Nurbs(Curve):
             b_point_x, b_point_y = self.parcer_N(t)
             self.curve_points += [(int(b_point_x), int(b_point_y))]
 
-
     def first_derivate(self):
         return (
-            ( -3 * self.old[0][0] * (1 - 0) ** 2 + 3 * self.old[1][0] * (1 - 0) ** 2 - 6 * self.old[1][0] * (1 - 0) * 0 + 6 * self.old[2][0] * (1 - 0) * 0 - 3 * self.old[2][0] * 0 ** 2 + 3 * self.old[3][0] * 0 ** 2),
-            (-3 * self.old[0][1] * (1 - 0) ** 2 + 3 * self.old[1][1] * (1 - 0) ** 2 - 6 * self.old[1][1] * (1 - 0) * 0 + 6 * self.old[2][1] * (1 - 0) * 0 - 3 * self.old[2][1] * 0 ** 2 + 3 * self.old[3][1] * 0 ** 2),
+            (
+                -3 * self.old[0][0] * (1 - 0) ** 2
+                + 3 * self.old[1][0] * (1 - 0) ** 2
+                - 6 * self.old[1][0] * (1 - 0) * 0
+                + 6 * self.old[2][0] * (1 - 0) * 0
+                - 3 * self.old[2][0] * 0 ** 2
+                + 3 * self.old[3][0] * 0 ** 2
+            ),
+            (
+                -3 * self.old[0][1] * (1 - 0) ** 2
+                + 3 * self.old[1][1] * (1 - 0) ** 2
+                - 6 * self.old[1][1] * (1 - 0) * 0
+                + 6 * self.old[2][1] * (1 - 0) * 0
+                - 3 * self.old[2][1] * 0 ** 2
+                + 3 * self.old[3][1] * 0 ** 2
+            ),
         )
 
     def second_derivate(self):
         return (
-            (-6 * ( -self.old[2][0] + self.old[1][0] * (2 - 3 * 0) - self.old[0][0] * (1 - 0) + 3 * self.old[2][0] * 0 - self.old[3][0] * 0)),
-            (-6 * ( -self.old[2][1] + self.old[1][1] * (2 - 3 * 0) - self.old[0][1] * (1 - 0) + 3 * self.old[2][1] * 0 - self.old[3][1] * 0)),
+            (
+                -6
+                * (
+                    -self.old[2][0]
+                    + self.old[1][0] * (2 - 3 * 0)
+                    - self.old[0][0] * (1 - 0)
+                    + 3 * self.old[2][0] * 0
+                    - self.old[3][0] * 0
+                )
+            ),
+            (
+                -6
+                * (
+                    -self.old[2][1]
+                    + self.old[1][1] * (2 - 3 * 0)
+                    - self.old[0][1] * (1 - 0)
+                    + 3 * self.old[2][1] * 0
+                    - self.old[3][1] * 0
+                )
+            ),
         )
