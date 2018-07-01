@@ -46,16 +46,4 @@ Click on some places to define the control points of the first and press the spa
 
 like this:
 
-![First step](docs/first_step.gif)
-
-Click on some places to define the control points of the second and press the space key
-
-like this:
-
-![Second step](docs/second_step.gif)
-
-So press the space key to do `c0`
-
-like this:
-
-![Third step](docs/third_step.gif)
+![step](docs/run.gif)

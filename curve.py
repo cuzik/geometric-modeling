@@ -15,7 +15,7 @@ class Curve(object):
         self.color_points = color_points
         self.color_curve = color_curve
         self.screen = screen
-        self.step = 0.001
+        self.step = 0.01
         self.weigth = weigth
         self.define_points_done = False
         self.number_points = number_points
